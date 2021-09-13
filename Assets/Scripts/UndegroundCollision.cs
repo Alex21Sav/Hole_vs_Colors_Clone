@@ -17,12 +17,14 @@ public class UndegroundCollision : MonoBehaviour
                 Level.Instance.ObjectsInScene--;
                 UIManager.Instance.UpdateLevelProgress();
 
+                Magnet.Instance.AddToMagnetField(other.attachedRigidbody);
+
                 Destroy(other.gameObject);
 
                 if(Level.Instance.ObjectsInScene == 0)
                 {                    
                     UIManager.Instance.ShowLevelComletedUI();
-
+                    Level.Instance.PlayWinFX();
                     Invoke("NextLevel", 2f);
                 }
             }

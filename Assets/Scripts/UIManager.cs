@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [Space]
     [SerializeField] private TMP_Text _levelCompletedText;
 
+    [Space]
+    [SerializeField] private Image _fadePanel;
+
     private void Awake()
     {
         if(Instance == null)
@@ -28,6 +31,8 @@ public class UIManager : MonoBehaviour
     }    
     private void Start()
     {
+        FadeAtStart();
+
         _progressFillImage.fillAmount = 0f;
         SetLevelProgressText();
     }
@@ -47,5 +52,10 @@ public class UIManager : MonoBehaviour
     public void ShowLevelComletedUI()
     {
         _levelCompletedText.DOFade(1f, 0.6f).From(0f);
+    }
+
+    public void FadeAtStart()
+    {
+        _fadePanel.DOFade(0f, 2f).From(1f);
     }
 }
